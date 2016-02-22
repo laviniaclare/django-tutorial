@@ -1,13 +1,12 @@
-import datetime
 
 from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
+import datetime
 
 # Create your models here.
 
-@python_2_unicode_compatible
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
@@ -19,7 +18,6 @@ class Question(models.Model):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
 
-@python_2_unicode_compatible
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=200)
